@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     pwgen \
     imagemagick \
     ffmpeg2theora \
-    ufraw \
     poppler-utils \
     libwpd-tools \
     exiftool \
