@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     poppler-utils \
     libwpd-tools \
     exiftool \
-    ghostscript \
     ffmpeg \
     x264 \
  && rm -rf /var/lib/apt/lists/*
