@@ -30,17 +30,17 @@ ARG NUXEO_MD5=327d23bbd5558565694027b11c0dd82a
 
 # Create Nuxeo user
 RUN useradd -m -d /home/$NUXEO_USER -u 1000 -s /bin/bash $NUXEO_USER
-RUN chown -R 1000:0 /tmp
+RUN chown -R 1000:0 /opt
 
 
 # Add distribution
 RUN curl -fsSL "${NUXEO_DIST_URL}" -o /tmp/nuxeo-distribution-tomcat.zip 
-RUN mkdir  /tmp/nuxeo-distribution
-RUN mkdir -p /tmp/nuxeo-distribution $(dirname $NUXEO_HOME) 
+RUN mkdir  /opt/nuxeo-distribution
+RUN mkdir -p /opt/nuxeo-distribution $(dirname $NUXEO_HOME) 
 RUN ls /tmp
-RUN unzip -q -d /tmp/nuxeo-distribution /tmp/nuxeo-distribution-tomcat.zip \
-    && DISTDIR=$(/bin/ls /tmp/nuxeo-distribution | head -n 1) \
-    && mv /tmp/nuxeo-distribution/$DISTDIR $NUXEO_HOME \
+RUN unzip -q -d /opt/nuxeo-distribution /opt/nuxeo-distribution-tomcat.zip \
+    && DISTDIR=$(/bin/ls /opt/nuxeo-distribution | head -n 1) \
+    && mv /opt/nuxeo-distribution/$DISTDIR $NUXEO_HOME \
     && sed -i -e "s/^org.nuxeo.distribution.package.*/org.nuxeo.distribution.package=docker/" $NUXEO_HOME/templates/common/config/distribution.properties \
     && chmod +x $NUXEO_HOME/bin/*ctl $NUXEO_HOME/bin/*.sh \
     # For arbitrary user in the admin group
