@@ -30,8 +30,8 @@ ARG NUXEO_MD5=327d23bbd5558565694027b11c0dd82a
 
 # Create Nuxeo user
 RUN useradd -m -d /home/$NUXEO_USER -u 1000 -s /bin/bash $NUXEO_USER
-USER root
-RUN chmod 0777 /tmp
+RUN chown -R 1000:0 /tmp
+
 
 # Add distribution
 RUN curl -fsSL "${NUXEO_DIST_URL}" -o /tmp/nuxeo-distribution-tomcat.zip 
