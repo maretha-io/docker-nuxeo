@@ -37,7 +37,7 @@ RUN chmod 0777 /tmp
 RUN curl -fsSL "${NUXEO_DIST_URL}" -o /tmp/nuxeo-distribution-tomcat.zip 
 RUN mkdir -p /tmp/nuxeo-distribution $(dirname $NUXEO_HOME) 
 RUN unzip -q -d /tmp/nuxeo-distribution /tmp/nuxeo-distribution-tomcat.zip \
-    && DISTDIR=$(/bin/ls /tmp/nuxeo-distribution | head -n 1) \
+    && DISTDIR=$(sudo /bin/ls /tmp/nuxeo-distribution | head -n 1) \
     && mv /tmp/nuxeo-distribution/$DISTDIR $NUXEO_HOME \
     && sed -i -e "s/^org.nuxeo.distribution.package.*/org.nuxeo.distribution.package=docker/" $NUXEO_HOME/templates/common/config/distribution.properties \
     && chmod +x $NUXEO_HOME/bin/*ctl $NUXEO_HOME/bin/*.sh \
