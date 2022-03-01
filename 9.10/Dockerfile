@@ -34,10 +34,10 @@ RUN chown -R 1000:0 /opt
 
 
 # Add distribution
-RUN curl -fsSL "${NUXEO_DIST_URL}" -o /tmp/nuxeo-distribution-tomcat.zip 
+RUN curl -fsSL "${NUXEO_DIST_URL}" -o /opt/nuxeo-distribution-tomcat.zip 
 RUN mkdir  /opt/nuxeo-distribution
 RUN mkdir -p /opt/nuxeo-distribution $(dirname $NUXEO_HOME) 
-RUN ls /tmp
+RUN ls /opt
 RUN unzip -q -d /opt/nuxeo-distribution /opt/nuxeo-distribution-tomcat.zip \
     && DISTDIR=$(/bin/ls /opt/nuxeo-distribution | head -n 1) \
     && mv /opt/nuxeo-distribution/$DISTDIR $NUXEO_HOME \
