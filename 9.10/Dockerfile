@@ -37,6 +37,7 @@ RUN chmod 0777 /tmp
 RUN curl -fsSL "${NUXEO_DIST_URL}" -o /tmp/nuxeo-distribution-tomcat.zip 
 RUN mkdir  /tmp/nuxeo-distribution
 RUN mkdir -p /tmp/nuxeo-distribution $(dirname $NUXEO_HOME) 
+RUN ls /tmp
 RUN unzip -q -d /tmp/nuxeo-distribution /tmp/nuxeo-distribution-tomcat.zip \
     && DISTDIR=$(/bin/ls /tmp/nuxeo-distribution | head -n 1) \
     && mv /tmp/nuxeo-distribution/$DISTDIR $NUXEO_HOME \
