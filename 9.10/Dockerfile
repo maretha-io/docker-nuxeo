@@ -34,16 +34,16 @@ RUN useradd -m -d /home/$NUXEO_USER -u 1000 -s /bin/bash $NUXEO_USER
 RUN chown -R $NUXEO_USER:$NUXEO_USER /opt
 RUN whoami
 RUN pwd
-RUN /bin/ls -all /home/root
+RUN /bin/ls -all /
 
 # Add distribution
-RUN curl -fsSL "${NUXEO_DIST_URL}" -o /opt/nuxeo-distribution-tomcat.zip 
-RUN mkdir  /opt/nuxeo-distribution
-RUN mkdir -p /opt/nuxeo-distribution $(dirname $NUXEO_HOME) 
-RUN chmod -R 757 /opt/nuxeo-distribution
-RUN unzip -q -d /opt/nuxeo-distribution /opt/nuxeo-distribution-tomcat.zip \
-    && DISTDIR=$(/bin/ls /opt/nuxeo-distribution | head -n 1) \
-    && mv /opt/nuxeo-distribution/$DISTDIR $NUXEO_HOME \
+RUN curl -fsSL "${NUXEO_DIST_URL}" -o /nuxeo-distribution-tomcat.zip 
+RUN mkdir  /nuxeo-distribution
+RUN mkdir -p /nuxeo-distribution $(dirname $NUXEO_HOME) 
+RUN chmod -R 757 /nuxeo-distribution
+RUN unzip -q -d /nuxeo-distribution /nuxeo-distribution-tomcat.zip \
+    && DISTDIR=$(/bin/ls /nuxeo-distribution | head -n 1) \
+    && mv /nuxeo-distribution/$DISTDIR $NUXEO_HOME \
     && sed -i -e "s/^org.nuxeo.distribution.package.*/org.nuxeo.distribution.package=docker/" $NUXEO_HOME/templates/common/config/distribution.properties \
     && chmod +x $NUXEO_HOME/bin/*ctl $NUXEO_HOME/bin/*.sh \
     # For arbitrary user in the admin group
