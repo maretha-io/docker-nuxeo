@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libwpd-tools \
     exiftool \
     ghostscript \
-    libreoffice \
     ffmpeg \
     x264 \
  && rm -rf /var/lib/apt/lists/*
