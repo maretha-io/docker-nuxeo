@@ -33,7 +33,7 @@ RUN useradd -m -d /home/$NUXEO_USER -u 1000 -s /bin/bash $NUXEO_USER
 
 RUN chown -R $NUXEO_USER:$NUXEO_USER /opt
 RUN whoami
-RUN /bin/ls -all /opt
+RUN /bin/ls -all /home/root
 
 # Add distribution
 RUN curl -fsSL "${NUXEO_DIST_URL}" -o /opt/nuxeo-distribution-tomcat.zip 
